@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernwood — No Time Objection Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --charcoal-dark: #2A2A2A;
+  --charcoal-mid: #3D3D3D;
+  --charcoal-light: #5A5A5A;
+  --charcoal-pale: #F0F0F0;
+  --magenta: #C8007D;
+  --magenta-light: #D93B96;
+  --magenta-pale: #FCE8F5;
+  --gold: #C9A84C;
+  --gold-light: #E0C070;
+  --gold-pale: #FAF5E8;
+  --cream: #FAFAF8;
+  --mid: #555555;
+  --light: #999999;
+  --border: rgba(42,42,42,0.13);
+  --shadow: 0 4px 28px rgba(42,42,42,0.10);
+  --shadow-lg: 0 16px 56px rgba(42,42,42,0.15);
+  --white: #FFFFFF;
+  --purple: #6B3FA0;
+  --purple-pale: #F0EAF8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal-dark); min-height: 100vh; }
+
+/* HEADER */
+.header { background: var(--charcoal-dark); position: sticky; top: 0; z-index: 300; box-shadow: 0 2px 20px rgba(0,0,0,0.22); }
+.header-inner { max-width: 900px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-mark { width: 36px; height: 36px; background: var(--magenta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 900; color: white; font-size: 17px; }
+.logo-text { font-family: 'Playfair Display', serif; color: white; font-size: 16px; font-weight: 600; line-height: 1.2; }
+.logo-sub { color: rgba(255,255,255,0.5); font-size: 9.5px; letter-spacing: 1.8px; text-transform: uppercase; }
+.header-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 4px 14px; font-size: 11.5px; color: var(--gold-light); font-weight: 500; }
+
+/* HERO */
+.hero { background: var(--charcoal-dark); padding: 52px 32px 80px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(107,63,160,0.2) 0%, transparent 65%); pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+.hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(107,63,160,0.4); background: rgba(107,63,160,0.15); border-radius: 3px; padding: 5px 16px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #B08FD4; margin-bottom: 22px; font-weight: 500; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4.5vw, 48px); font-weight: 900; color: white; line-height: 1.1; margin-bottom: 8px; }
+.hero h1 em { color: #B08FD4; font-style: italic; font-weight: 400; }
+.hero-rule { width: 44px; height: 2px; background: var(--purple); margin: 18px 0; }
+.hero-desc { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.8; max-width: 600px; font-weight: 300; }
+
+.wrapper { max-width: 900px; margin: 0 auto; padding: 40px 32px 80px; }
+
+.screen { display: none; animation: fadeUp 0.5s ease; }
+.screen.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+/* REGISTRATION */
+.reg-card { background: white; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; }
+.reg-card-header { background: var(--charcoal-dark); padding: 28px 36px; }
+.reg-card-header h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: white; margin-bottom: 4px; }
+.reg-card-header p { color: rgba(255,255,255,0.6); font-size: 13.5px; }
+.reg-card-body { padding: 36px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--charcoal-dark); }
+.field input, .field select { border: 1.5px solid var(--border); border-radius: 9px; padding: 12px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--charcoal-dark); background: var(--cream); transition: border-color 0.2s; outline: none; }
+.field input:focus, .field select:focus { border-color: var(--purple); background: white; }
+
+/* PROGRESS TRACKER */
+.progress-tracker { background: white; border-radius: 16px; border: 1px solid var(--border); padding: 20px 28px; margin-bottom: 28px; box-shadow: var(--shadow); overflow-x: auto; }
+.tracker-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); font-weight: 600; margin-bottom: 14px; }
+.tracker-steps { display: flex; align-items: flex-start; min-width: 560px; }
+.tracker-step { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; position: relative; }
+.tracker-step:not(:last-child)::after { content: ''; position: absolute; top: 13px; left: 50%; width: 100%; height: 2px; background: var(--border); z-index: 0; }
+.tracker-step.done::after { background: var(--purple); }
+.tracker-dot { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border); background: white; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--light); z-index: 1; transition: all 0.3s; flex-shrink: 0; }
+.tracker-step.done .tracker-dot { background: var(--purple); border-color: var(--purple); color: white; }
+.tracker-step.active .tracker-dot { background: var(--magenta); border-color: var(--magenta); color: white; box-shadow: 0 0 0 4px rgba(200,0,125,0.2); }
+.tracker-name { font-size: 8.5px; color: var(--light); text-align: center; font-weight: 500; line-height: 1.3; max-width: 64px; }
+.tracker-step.done .tracker-name, .tracker-step.active .tracker-name { color: var(--charcoal-dark); font-weight: 600; }
+
+/* STEP CARD */
+.step-card { background: white; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; margin-bottom: 20px; }
+
+/* PERSON HEADER */
+.person-header { padding: 20px 28px; display: flex; align-items: center; gap: 16px; }
+.person-av { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.person-av.priya { background: linear-gradient(135deg, #E8D5F5, #D4B8E8); }
+.person-av.mia { background: linear-gradient(135deg, #FFE4B5, #FFDAA0); }
+.person-av.staff { background: linear-gradient(135deg, #E8F4E8, #C8E6C8); }
+.person-info { flex: 1; }
+.person-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--charcoal-dark); margin-bottom: 2px; }
+.person-role { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+.person-role.priya { color: var(--purple); }
+.person-role.mia { color: var(--gold); }
+.person-role.staff { color: #2E7D32; }
+.step-badge { background: var(--charcoal-pale); border-radius: 8px; padding: 4px 12px; font-size: 11px; font-weight: 600; color: var(--charcoal-light); }
+
+.card-divider { height: 1px; background: var(--border); margin: 0 28px; }
+
+/* VIDEO PLAYER */
+.video-section { padding: 24px 28px; }
+.video-label-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.video-label-icon { font-size: 18px; }
+.video-label-text { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--charcoal-light); }
+.vimeo-container { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+.vimeo-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 14px; }
+
+/* COACHING BULLETS */
+.coaching-bullets { margin: 18px 28px 24px; background: var(--gold-pale); border-radius: 14px; padding: 18px 22px; border-left: 4px solid var(--gold); }
+.coaching-bullets-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.coaching-bullets ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.coaching-bullets ul li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--charcoal-dark); line-height: 1.6; }
+.coaching-bullets ul li::before { content: '✦'; color: var(--gold); font-size: 10px; flex-shrink: 0; margin-top: 4px; }
+
+/* CONTEXT BOX for Priya */
+.context-box { margin: 0 28px 20px; background: var(--purple-pale); border-radius: 12px; padding: 16px 20px; border-left: 4px solid var(--purple); }
+.context-box-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 8px; }
+.context-box p { font-size: 13.5px; color: var(--charcoal-dark); line-height: 1.6; font-style: italic; }
+
+/* RECORDER */
+.recorder-section { padding: 0 28px 28px; }
+.recorder-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.recorder-header-icon { font-size: 18px; }
+.recorder-header-text { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #2E7D32; }
+.recorder-box { border: 2px dashed var(--border); border-radius: 16px; padding: 28px; text-align: center; background: rgba(42,42,42,0.02); transition: all 0.25s; }
+.recorder-box.has-video { border-color: #2E7D32; background: #F1F8F1; border-style: solid; }
+.rec-icon { font-size: 44px; margin-bottom: 14px; }
+.rec-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--charcoal-dark); margin-bottom: 6px; }
+.rec-desc { color: var(--mid); font-size: 13px; line-height: 1.6; margin-bottom: 22px; max-width: 400px; margin-left: auto; margin-right: auto; }
+.timer { font-family: 'DM Mono', monospace; font-size: 30px; font-weight: 500; color: var(--charcoal-dark); margin-bottom: 10px; }
+.timer.recording-timer { color: var(--magenta); }
+.video-container { position: relative; border-radius: 12px; overflow: hidden; background: black; margin-bottom: 14px; }
+.recorded-video { width: 100%; display: block; border-radius: 12px; max-height: 320px; object-fit: cover; }
+.video-chip { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.65); color: white; font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+
+/* BUTTONS */
+.btn { padding: 13px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 8px; }
+.btn-magenta { background: var(--magenta); color: white; }
+.btn-magenta:hover { background: var(--magenta-light); transform: translateY(-1px); }
+.btn-dark { background: var(--charcoal-dark); color: white; }
+.btn-dark:hover { background: var(--charcoal-mid); transform: translateY(-1px); }
+.btn-ghost { background: white; color: var(--charcoal-dark); border: 2px solid var(--border); }
+.btn-ghost:hover { border-color: var(--charcoal-dark); }
+.btn-green { background: #2E7D32; color: white; }
+.btn-green:hover { background: #1B5E20; transform: translateY(-1px); }
+.btn-outline-green { background: white; color: #2E7D32; border: 2px solid #2E7D32; }
+.btn-outline-green:hover { background: #F1F8F1; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+.btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.btn-row-right { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+
+.submitted-banner { background: #F1F8F1; border: 1px solid #2E7D32; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.submitted-banner .check { width: 34px; height: 34px; background: #2E7D32; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 17px; flex-shrink: 0; }
+.submitted-banner p { font-size: 14px; color: var(--charcoal-dark); font-weight: 500; }
+.submitted-banner p span { font-weight: 400; color: var(--mid); display: block; font-size: 13px; }
+
+.continue-btn-row { padding: 0 28px 28px; display: flex; justify-content: flex-end; }
+
+/* SUBMIT FORM */
+.submit-form { background: var(--charcoal-pale); border-radius: 14px; padding: 20px 22px; margin-top: 14px; display: none; }
+.submit-form h4 { font-size: 14px; font-weight: 700; color: var(--charcoal-dark); margin-bottom: 6px; }
+.submit-form p { font-size: 13px; color: var(--mid); margin-bottom: 14px; }
+
+/* COMPLETION */
+.completion-card { background: white; border-radius: 20px; border: 1px solid var(--border); padding: 52px 40px; text-align: center; box-shadow: var(--shadow-lg); }
+.completion-icon { font-size: 64px; margin-bottom: 20px; }
+.completion-card h2 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: var(--charcoal-dark); margin-bottom: 10px; }
+.completion-congrats { color: var(--purple); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.completion-card > p { color: var(--mid); font-size: 15px; line-height: 1.7; max-width: 480px; margin: 0 auto 28px; }
+.completion-meta { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 24px auto; max-width: 480px; }
+.meta-box { background: var(--charcoal-pale); border-radius: 12px; padding: 16px; }
+.meta-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); margin-bottom: 4px; }
+.meta-val { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--charcoal-dark); }
+.what-next { background: var(--charcoal-pale); border-radius: 14px; padding: 22px 24px; text-align: left; margin-top: 24px; }
+.what-next h4 { font-size: 14px; font-weight: 700; color: var(--charcoal-dark); margin-bottom: 12px; }
+.next-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 13.5px; color: var(--mid); line-height: 1.5; }
+.next-item::before { content: '✓'; color: var(--purple); font-weight: 700; flex-shrink: 0; }
+
+.save-toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--charcoal-dark); color: white; padding: 12px 22px; border-radius: 30px; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: transform 0.4s cubic-bezier(.4,0,.2,1), opacity 0.4s; opacity: 0; pointer-events: none; white-space: nowrap; }
+.save-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+html.is-mobile .desktop-recorder { display: none !important; }
+html.is-mobile .mobile-upload-section { display: block !important; }
+.mobile-upload-section { display: none; }
+
+@media (max-width: 600px) {
+  .wrapper { padding: 20px 16px 60px; }
+  .person-header { padding: 16px 20px; }
+  .video-section, .coaching-bullets, .context-box, .recorder-section { padding-left: 20px; padding-right: 20px; }
+  .card-divider { margin: 0 20px; }
+  .coaching-bullets { margin: 16px 20px 20px; }
+  .context-box { margin: 0 20px 16px; }
+  .completion-meta { grid-template-columns: 1fr 1fr; }
+}
+</style>
+<script>
+(function() {
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android/i.test(ua) || (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)) {
+    document.documentElement.classList.add('is-mobile');
+  }
+})();
+</script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">F</div>
+      <div>
+        <div class="logo-text">Fernwood Fitness</div>
+        <div class="logo-sub">Sales Coaching Platform</div>
+      </div>
+    </div>
+    <div class="header-badge">Objection Coaching · "No Time"</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🎬 Live Video Coaching</div>
+    <h1>"I Don't Have<br><em>the Time"</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">Watch Priya raise the objection. Hear Mia's coaching. Then record your own response. Three real moments — five minutes — one complete sales conversation.</p>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- SCREEN 1: REGISTRATION -->
+  <div class="screen active" id="screen-reg">
+    <div class="reg-card">
+      <div class="reg-card-header">
+        <h2>Welcome to the No Time Coaching Session</h2>
+        <p>A 5-minute guided role play with real video coaching from Mia.</p>
+      </div>
+      <div class="reg-card-body">
+
+        <div style="background:var(--charcoal-pale); border-radius:14px; padding:20px 22px; margin-bottom:24px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--charcoal-light); margin-bottom:14px;">How this session works</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <div style="width:36px;height:36px;background:var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:15px;font-weight:700;flex-shrink:0;">1</div>
+              <div><strong style="display:block;font-size:14px;color:var(--charcoal-dark);margin-bottom:2px;">Priya raises the stall</strong><span style="font-size:13px;color:var(--mid);">Watch Priya say "I need to think about it." Then watch Mia coach you on how to respond. Record your Turn 1 response.</span></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <div style="width:36px;height:36px;background:var(--magenta);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:15px;font-weight:700;flex-shrink:0;">2</div>
+              <div><strong style="display:block;font-size:14px;color:var(--charcoal-dark);margin-bottom:2px;">Priya reveals "no time"</strong><span style="font-size:13px;color:var(--mid);">Priya tells you she's exhausted and doesn't know when she'd come. Mia coaches the energy flip and 24/7 access response. Record your Turn 2 response.</span></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <div style="width:36px;height:36px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:15px;font-weight:700;flex-shrink:0;">3</div>
+              <div><strong style="display:block;font-size:14px;color:var(--charcoal-dark);margin-bottom:2px;">Priya pushes back — you close</strong><span style="font-size:13px;color:var(--mid);">Priya says her schedule is completely full. Mia coaches the close. Record your Turn 3 closing response.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:center; background:white; border:1.5px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:24px;">
+          <div style="display:flex; gap:-8px;">
+            <div style="width:44px;height:44px;background:linear-gradient(135deg,#E8D5F5,#D4B8E8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid white;">👩🏽</div>
+            <div style="width:44px;height:44px;background:linear-gradient(135deg,#FFE4B5,#FFDAA0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid white;margin-left:-10px;">👩</div>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--charcoal-dark);margin-bottom:3px;">Priya & Mia are your coaches today</div>
+            <div style="font-size:13px;color:var(--mid);">Priya plays the prospective member. Mia coaches your response after each turn.</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--charcoal-light); margin-bottom:14px;">Your Details</div>
+        <div class="form-grid">
+          <div class="field"><label>First Name</label><input type="text" id="regFirstName" placeholder="e.g. Sarah" /></div>
+          <div class="field"><label>Last Name</label><input type="text" id="regLastName" placeholder="e.g. Mitchell" /></div>
+          <div class="field">
+            <label>Club / Location</label>
+            <select id="regClub">
+              <option value="">Select your club</option>
+              <option>Fernwood Albury</option><option>Fernwood Annandale</option><option>Fernwood Ascot Vale</option>
+              <option>Fernwood Auburn</option><option>Fernwood Ballarat</option><option>Fernwood Bankstown</option>
+              <option>Fernwood Belconnen</option><option>Fernwood Bellerive</option><option>Fernwood Bendigo</option>
+              <option>Fernwood Beverly Hills</option><option>Fernwood Braddon</option><option>Fernwood Browns Plains</option>
+              <option>Fernwood Bulleen</option><option>Fernwood Cairnlea</option><option>Fernwood Camberwell</option>
+              <option>Fernwood Campbelltown</option><option>Fernwood Canberra City</option><option>Fernwood Cannington</option>
+              <option>Fernwood Capalaba</option><option>Fernwood Carindale</option><option>Fernwood Carlton</option>
+              <option>Fernwood Castle Hill</option><option>Fernwood Central Coast</option><option>Fernwood Chermside</option>
+              <option>Fernwood Chirnside Park</option><option>Fernwood Clayton</option><option>Fernwood Craigieburn</option>
+              <option>Fernwood Cranbourne</option><option>Fernwood Darwin</option><option>Fernwood Epping</option>
+              <option>Fernwood Everton Park</option><option>Fernwood Ferntree Gully</option><option>Fernwood NSO</option>
+              <option>Fernwood Gladesville</option><option>Fernwood Gregory Hills</option><option>Fernwood Gungahlin</option>
+              <option>Fernwood Hornsby</option><option>Fernwood Kirrawee</option><option>Fernwood Liverpool</option>
+              <option>Fernwood Loganholme</option><option>Fernwood Marion</option><option>Fernwood Maroochydore</option>
+              <option>Fernwood Marsden Park</option><option>Fernwood Melton</option><option>Fernwood Melville</option>
+              <option>Fernwood Miranda</option><option>Fernwood Mitcham</option><option>Fernwood Morayfield</option>
+              <option>Fernwood Mordialloc</option><option>Fernwood Mornington</option><option>Fernwood Narre Warren</option>
+              <option>Fernwood Newstead</option><option>Fernwood Noosa</option><option>Fernwood North Lakes</option>
+              <option>Fernwood North Rocks</option><option>Fernwood Parramatta</option><option>Fernwood Penrith</option>
+              <option>Fernwood Petrie</option><option>Fernwood Preston</option><option>Fernwood Prospect</option>
+              <option>Fernwood Richmond</option><option>Fernwood Robina</option><option>Fernwood Rockdale</option>
+              <option>Fernwood Ryde</option><option>Fernwood Salisbury</option><option>Fernwood Seven Hills</option>
+              <option>Fernwood Shellharbour</option><option>Fernwood Shepparton</option><option>Fernwood St Agnes</option>
+              <option>Fernwood St Kilda</option><option>Fernwood Tarneit</option><option>Fernwood Toowoomba</option>
+              <option>Fernwood Tuggeranong</option><option>Fernwood Tullamarine</option><option>Fernwood Underwood</option>
+              <option>Fernwood Waurn Ponds</option><option>Fernwood Wetherill Park</option><option>Fernwood Woonona</option>
+              <option>Fernwood Yarraville</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Your Role</label>
+            <select id="regRole">
+              <option value="">Select your role</option>
+              <option>Membership Consultant</option><option>Club Manager</option><option>Assistant Manager</option>
+              <option>Senior Membership Consultant</option><option>Fitness Coach</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-row-right">
+          <button class="btn btn-dark" onclick="startSession()">I'm Ready — Begin the Session →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: SESSION -->
+  <div class="screen" id="screen-session">
+
+    <div class="progress-tracker">
+      <div class="tracker-label">Session Progress</div>
+      <div class="tracker-steps">
+        <div class="tracker-step" id="track-0"><div class="tracker-dot">1</div><div class="tracker-name">Priya Stalls</div></div>
+        <div class="tracker-step" id="track-1"><div class="tracker-dot">2</div><div class="tracker-name">Mia Coaches Turn 1</div></div>
+        <div class="tracker-step" id="track-2"><div class="tracker-dot">3</div><div class="tracker-name">Your Turn 1</div></div>
+        <div class="tracker-step" id="track-3"><div class="tracker-dot">4</div><div class="tracker-name">Priya No Time</div></div>
+        <div class="tracker-step" id="track-4"><div class="tracker-dot">5</div><div class="tracker-name">Mia Coaches Turn 2</div></div>
+        <div class="tracker-step" id="track-5"><div class="tracker-dot">6</div><div class="tracker-name">Your Turn 2</div></div>
+        <div class="tracker-step" id="track-6"><div class="tracker-dot">7</div><div class="tracker-name">Priya Pushes Back</div></div>
+        <div class="tracker-step" id="track-7"><div class="tracker-dot">8</div><div class="tracker-name">Mia Coaches Turn 3</div></div>
+        <div class="tracker-step" id="track-8"><div class="tracker-dot">9</div><div class="tracker-name">Your Close</div></div>
+      </div>
+    </div>
+
+    <div id="stepContainer"></div>
+
+  </div>
+
+  <!-- SCREEN 3: COMPLETION -->
+  <div class="screen" id="screen-complete">
+    <div class="completion-card">
+      <div class="completion-icon">🏆</div>
+      <div class="completion-congrats">Session Complete</div>
+      <h2>Objection <em style="color:var(--purple);font-style:italic;">Handled</em></h2>
+      <p>Outstanding work, <span id="completeName"></span>. You've completed all three turns of the No Time coaching session with Priya and Mia. Your manager will review your submissions and be in touch with feedback.</p>
+      <div class="completion-meta">
+        <div class="meta-box"><div class="meta-label">Turns</div><div class="meta-val">3 / 3</div></div>
+        <div class="meta-box"><div class="meta-label">Club</div><div class="meta-val" id="completeClub" style="font-size:13px;padding-top:3px;">—</div></div>
+        <div class="meta-box"><div class="meta-label">Date</div><div class="meta-val" id="completeDate" style="font-size:13px;padding-top:3px;">—</div></div>
+      </div>
+      <div style="background:var(--purple);border-radius:16px;padding:24px 28px;text-align:left;margin-bottom:24px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:8px;">⚠️ Upload your videos</div>
+        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:white;margin-bottom:10px;">Your 3 response videos are in your Downloads folder</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.8;">Upload them to your club's shared Drive folder so your manager can review all three turns alongside Priya's objections and Mia's coaching.</div>
+      </div>
+      <div class="what-next">
+        <h4>What happens next</h4>
+        <div class="next-item">Your manager will review your three responses against Mia's coaching notes and give you targeted feedback on your clarifying question, your energy flip, and your close.</div>
+        <div class="next-item">More objection coaching sessions are coming — each one follows the same format with Priya and Mia.</div>
+        <div class="next-item">The more times you run this session, the more natural the conversation will feel in a real tour.</div>
+      </div>
+      <div class="btn-row" style="margin-top:28px;">
+        <button class="btn btn-ghost" onclick="resetAll()">Run the Session Again</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="save-toast" id="saveToast"></div>
+
+<script>
+
+// ══ CONFIG ══
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIx6xFSabX_7G0ecdHhGoF2C6tniLLBdiiTSnRZQPitMBpIx6YjnDhz4EYMlCBZE5CNA/exec';
+const DRIVE_UPLOAD_FOLDER_URL = 'Club Drive folder — provided by manager';
+
+// ══ VIMEO VIDEO IDs ══
+const VIDEOS = {
+  priya1:  '1182155950',
+  mia1:    '1182168526',
+  priya2:  '1182157226',
+  mia2:    '1182188376',
+  priya3:  '1182157890',
+  mia3:    '1182189093'
+};
+
+// ══ COACHING BULLET POINTS ══
+const COACHING = {
+  turn1: {
+    title: 'How to respond to "I need to think about it"',
+    bullets: [
+      'Acknowledge warmly — never push back immediately. "Absolutely, that\'s completely understandable."',
+      'Ask the clarifying question and then STOP TALKING: "What is it specifically you\'d like to think about?"',
+      'Wait for her answer — the silence is powerful. She will fill it with the real objection.',
+      'Whatever she says — validate it before moving forward. "Thank you for telling me that."'
+    ]
+  },
+  turn2: {
+    title: 'How to handle the "No Time / No Energy" objection',
+    bullets: [
+      'Validate the exhaustion first — it\'s real. "I hear you and I believe you. That kind of tiredness is real."',
+      'Deliver the energy flip: "Exercise doesn\'t take energy — it creates it. Members who come in exhausted leave with more energy every time."',
+      'Use 24/7 access as the practical solution: "You\'re not locked into a class time — 5:30am, 8:30pm, Saturday morning — whenever suits your life."',
+      'Ask her to identify one time slot: "What time of day would realistically work for you? Let\'s build around that."'
+    ]
+  },
+  turn3: {
+    title: 'How to close when she says her schedule is completely full',
+    bullets: [
+      'Point out she made time today: "You made time to come here. That tells me that when it matters enough, there is time."',
+      'Make it feel small: "I\'m not asking you to overhaul your life — just identify one slot. Even twice a week for 30 minutes changes everything."',
+      'Reference her goal and deadline: "You said you want to [goal]. How much longer can that wait for a less busy time? Because that time never comes."',
+      'Close with the two-option question: "Which membership suits you best — the Focus or the Flourish? Let\'s get you started today."'
+    ]
+  }
+};
+
+// ══ STATE ══
+let state = {
+  name: '', club: '', role: '',
+  currentStep: 0,
+  recordings: { turn1: null, turn2: null, turn3: null },
+  recordingURLs: { turn1: null, turn2: null, turn3: null },
+  submitted: { turn1: false, turn2: false, turn3: false }
+};
+
+let mediaRecorder = null, recordedChunks = [], timerInterval = null, timerSeconds = 0, stream = null;
+
+// ══ STEP DEFINITIONS ══
+// Steps: 0=priya1, 1=mia1, 2=record1, 3=priya2, 4=mia2, 5=record2, 6=priya3, 7=mia3, 8=record3
+const TOTAL_STEPS = 9;
+
+// ══ SAVE/RESTORE ══
+const LS_KEY = 'fernwood_notime_v1';
+function lsSave() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      name: state.name, club: state.club, role: state.role,
+      currentStep: state.currentStep,
+      submitted: state.submitted,
+      savedAt: new Date().toISOString()
+    }));
+  } catch(e) {}
+}
+function lsLoad() { try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch(e) { return null; } }
+function lsClear() { try { localStorage.removeItem(LS_KEY); } catch(e) {} }
+
+// ══ REGISTRATION ══
+function startSession() {
+  var fn = document.getElementById('regFirstName').value.trim();
+  var ln = document.getElementById('regLastName').value.trim();
+  var club = document.getElementById('regClub').value;
+  var role = document.getElementById('regRole').value;
+  if (!fn || !ln || !club || !role) { alert('Please fill in all fields to begin.'); return; }
+  state.name = fn + ' ' + ln;
+  state.club = club;
+  state.role = role;
+  lsClear();
+  showScreen('screen-session');
+  goToStep(0);
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══ TRACKER ══
+function updateTracker(current) {
+  for (var i = 0; i < TOTAL_STEPS; i++) {
+    var el = document.getElementById('track-' + i);
+    if (!el) continue;
+    el.classList.remove('active', 'done');
+    if (i < current) el.classList.add('done');
+    else if (i === current) el.classList.add('active');
+  }
+}
+
+// ══ STEP ROUTER ══
+function goToStep(step) {
+  state.currentStep = step;
+  updateTracker(step);
+  lsSave();
+  if (step === 0) renderPriyaStep(1, VIDEOS.priya1, 'priya-turn1', '"I Need to Think About It"', 'Priya has just heard your full presentation. Watch her response — then Mia will coach you on exactly how to handle this moment.');
+  else if (step === 1) renderMiaStep(1, VIDEOS.mia1, COACHING.turn1, 'turn1');
+  else if (step === 2) renderRecordStep(1, 'turn1', 'Ask the clarifying question — find out what\'s really behind the stall. Wait for her answer before saying anything else.');
+  else if (step === 3) renderPriyaStep(2, VIDEOS.priya2, 'priya-turn2', '"I Don\'t Have the Time"', 'You asked what Priya needed to think about. Here is her answer — the no time objection. Watch it, then Mia will coach your response.');
+  else if (step === 4) renderMiaStep(2, VIDEOS.mia2, COACHING.turn2, 'turn2');
+  else if (step === 5) renderRecordStep(2, 'turn2', 'Validate the exhaustion, deliver the energy flip, highlight 24/7 access, and ask her to identify one time slot.');
+  else if (step === 6) renderPriyaStep(3, VIDEOS.priya3, 'priya-turn3', '"My Schedule is Completely Full"', 'Priya pushes back one final time. Watch her response — then Mia will coach you on how to close.');
+  else if (step === 7) renderMiaStep(3, VIDEOS.mia3, COACHING.turn3, 'turn3');
+  else if (step === 8) renderRecordStep(3, 'turn3', 'Stay calm, reconnect to her goals, ask her to identify one time slot — then close with Focus or Flourish.');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══ PRIYA STEP ══
+function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
+  var isSubmittedTurn = (turnNum === 1 && state.submitted.turn1) || (turnNum === 2 && state.submitted.turn2) || (turnNum === 3 && state.submitted.turn3);
+  document.getElementById('stepContainer').innerHTML =
+    '<div class="step-card">' +
+      '<div class="person-header">' +
+        '<div class="person-av priya">👩🏽</div>' +
+        '<div class="person-info"><div class="person-name">Priya</div><div class="person-role priya">Prospective Member · Turn ' + turnNum + ' of 3</div></div>' +
+        '<div class="step-badge">Watch First</div>' +
+      '</div>' +
+      '<div class="card-divider"></div>' +
+      '<div class="video-section">' +
+        '<div class="video-label-row"><div class="video-label-icon">🎬</div><div class="video-label-text">' + title + '</div></div>' +
+        '<div style="text-align:center;padding:8px 0 4px;">' +
+        '<a href="https://vimeo.com/' + videoId + '" target="_blank" style="display:inline-flex;align-items:center;gap:14px;background:var(--charcoal-dark);border-radius:16px;padding:20px 32px;text-decoration:none;border:2px solid rgba(255,255,255,0.12);transition:all 0.2s;">' +
+          '<div style="width:56px;height:56px;background:var(--magenta);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
+            '<div style="width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:20px solid white;margin-left:4px;"></div>' +
+          '</div>' +
+          '<div style="text-align:left;">' +
+            '<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:white;margin-bottom:4px;">Watch Video</div>' +
+            '<div style="font-size:13px;color:rgba(255,255,255,0.6);">Opens in a new tab — come back here to record your response</div>' +
+          '</div>' +
+        '</a>' +
+      '</div>' +
+      '</div>' +
+      '<div class="context-box">' +
+        '<div class="context-box-label">What\'s happening here</div>' +
+        '<p>' + desc + '</p>' +
+      '</div>' +
+      '<div class="continue-btn-row">' +
+        '<button class="btn btn-dark" onclick="goToStep(' + state.currentStep + ' + 1)">Watch Mia\'s Coaching →</button>' +
+      '</div>' +
+    '</div>';
+}
+
+// ══ MIA STEP ══
+function renderMiaStep(turnNum, videoId, coaching, turnKey) {
+  var bulletsHTML = coaching.bullets.map(function(b) { return '<li>' + b + '</li>'; }).join('');
+  document.getElementById('stepContainer').innerHTML =
+    '<div class="step-card">' +
+      '<div class="person-header">' +
+        '<div class="person-av mia">👩</div>' +
+        '<div class="person-info"><div class="person-name">Mia</div><div class="person-role mia">Sales Coach · Turn ' + turnNum + ' Coaching</div></div>' +
+        '<div class="step-badge">Coaching</div>' +
+      '</div>' +
+      '<div class="card-divider"></div>' +
+      '<div class="video-section">' +
+        '<div class="video-label-row"><div class="video-label-icon">🎓</div><div class="video-label-text">Mia coaches your Turn ' + turnNum + ' response</div></div>' +
+        '<div style="text-align:center;padding:8px 0 4px;">' +
+        '<a href="https://vimeo.com/' + videoId + '" target="_blank" style="display:inline-flex;align-items:center;gap:14px;background:var(--charcoal-dark);border-radius:16px;padding:20px 32px;text-decoration:none;border:2px solid rgba(255,255,255,0.12);transition:all 0.2s;">' +
+          '<div style="width:56px;height:56px;background:var(--magenta);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
+            '<div style="width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:20px solid white;margin-left:4px;"></div>' +
+          '</div>' +
+          '<div style="text-align:left;">' +
+            '<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:white;margin-bottom:4px;">Watch Video</div>' +
+            '<div style="font-size:13px;color:rgba(255,255,255,0.6);">Opens in a new tab — come back here to record your response</div>' +
+          '</div>' +
+        '</a>' +
+      '</div>' +
+      '</div>' +
+      '<div class="coaching-bullets">' +
+        '<div class="coaching-bullets-label">✦ Key coaching points — keep these visible while you record</div>' +
+        '<ul>' + bulletsHTML + '</ul>' +
+      '</div>' +
+      '<div class="continue-btn-row">' +
+        '<button class="btn btn-green" onclick="goToStep(' + state.currentStep + ' + 1)">I\'m Ready — Record My Response →</button>' +
+      '</div>' +
+    '</div>';
+}
+
+// ══ RECORD STEP ══
+function renderRecordStep(turnNum, turnKey, taskDesc) {
+  var td = state.recordings[turnKey];
+  var tdURL = state.recordingURLs[turnKey];
+  var isSubmitted = state.submitted[turnKey];
+  var coaching = turnNum === 1 ? COACHING.turn1 : (turnNum === 2 ? COACHING.turn2 : COACHING.turn3);
+  var bulletsHTML = coaching.bullets.map(function(b) { return '<li>' + b + '</li>'; }).join('');
+
+  var recorderHTML = '';
+  if (isSubmitted) {
+    recorderHTML = '<div class="recorder-box has-video">' +
+      (tdURL ? '<div class="video-container"><video class="recorded-video" src="' + tdURL + '" controls></video><div class="video-chip">Turn ' + turnNum + ' — Submitted ✓</div></div>' : '') +
+      '<p style="color:#2E7D32;font-weight:600;font-size:14px;margin-top:8px;">✓ Submitted — your manager will review this response.</p>' +
+    '</div>';
+  } else if (td) {
+    recorderHTML = '<div class="recorder-box has-video">' +
+      '<div class="video-container"><video class="recorded-video" src="' + tdURL + '" controls></video><div class="video-chip">Take recorded — ready to submit</div></div>' +
+      '<div class="btn-row"><button class="btn btn-outline-green" onclick="retakeVideo(\'' + turnKey + '\')">↩ Re-record</button><button class="btn btn-dark" onclick="showSubmitForm(\'' + turnKey + '\', ' + turnNum + ')">Submit This Take →</button></div>' +
+    '</div>';
+  } else {
+    recorderHTML =
+      '<div class="mobile-upload-section" style="background:var(--charcoal-dark);border-radius:14px;padding:28px 24px;text-align:center;margin-bottom:14px;">' +
+        '<div style="font-size:40px;margin-bottom:14px;">📱</div>' +
+        '<div style="font-family:\'Playfair Display\',serif;font-size:19px;font-weight:700;color:white;margin-bottom:10px;">Film your response on your iPhone</div>' +
+        '<p style="font-size:13.5px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:20px;">Open your iPhone Camera app, record your response, save it to Photos, then tap the button below to upload it.</p>' +
+        '<label class="btn btn-magenta" style="cursor:pointer;font-size:15px;padding:14px 28px;">📁 Upload My Video<input type="file" accept="video/*" capture="user" onchange="handleUpload(event,\'' + turnKey + '\')" style="display:none;"></label>' +
+      '</div>' +
+      '<div class="desktop-recorder"><div class="recorder-box" id="recBox-' + turnKey + '">' +
+      '<div id="cameraPreview-' + turnKey + '" style="display:none;"><div class="video-container"><video id="liveFeed-' + turnKey + '" autoplay muted playsinline style="max-height:260px;"></video><div class="video-chip" id="recLabel-' + turnKey + '">Camera Ready</div></div><div class="timer" id="timer-' + turnKey + '">0:00</div></div>' +
+      '<div id="idleState-' + turnKey + '"><div class="rec-icon">🎥</div><div class="rec-title">Record Your Response</div><div class="rec-desc">' + taskDesc + '</div></div>' +
+      '<div class="btn-row"><button class="btn btn-green" id="startBtn-' + turnKey + '" onclick="startRecording(\'' + turnKey + '\')">● Start Recording</button><button id="stopBtn-' + turnKey + '" onclick="stopRecording(\'' + turnKey + '\')" style="display:none;background:var(--magenta);color:white;" class="btn">■ Stop & Review</button></div>' +
+      '<div style="height:1px;background:var(--border);margin:18px 0;"></div>' +
+      '<div style="text-align:center;"><p style="color:var(--mid);font-size:13px;margin-bottom:10px;">Or upload a pre-recorded video</p><label class="btn btn-ghost" style="cursor:pointer;">📁 Upload<input type="file" accept="video/*" onchange="handleUpload(event,\'' + turnKey + '\')" style="display:none;"></label></div>' +
+    '</div></div>';
+  }
+
+  var submitFormHTML = !isSubmitted ? '<div class="submit-form" id="submitForm-' + turnKey + '">' +
+    '<h4>Ready to submit Turn ' + turnNum + '?</h4>' +
+    '<p>Your video will be saved to your Downloads folder and your manager will be notified.</p>' +
+    '<div class="btn-row-right"><button class="btn btn-ghost" onclick="document.getElementById(\'submitForm-' + turnKey + '\').style.display=\'none\'">Cancel</button><button class="btn btn-magenta" id="submitBtn-' + turnKey + '" onclick="submitTurn(\'' + turnKey + '\',' + turnNum + ')">Submit Turn ' + turnNum + ' →</button></div>' +
+  '</div>' : '';
+
+  var nextStepHTML = isSubmitted && turnNum < 3 ?
+    '<div style="padding:0 28px 28px;display:flex;justify-content:flex-end;"><button class="btn btn-dark" onclick="goToStep(' + (state.currentStep + 1) + ')">Continue to Turn ' + (turnNum + 1) + ' →</button></div>' :
+    isSubmitted && turnNum === 3 ?
+    '<div style="background:var(--charcoal-dark);border-radius:16px;padding:28px 32px;text-align:center;margin:0 28px 28px;"><div style="font-size:40px;margin-bottom:12px;">🏆</div><div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:white;margin-bottom:10px;">All Three Turns Complete!</div><button class="btn btn-magenta" onclick="showCompletion()" style="font-size:15px;padding:14px 32px;">View Your Summary →</button></div>' : '';
+
+  document.getElementById('stepContainer').innerHTML =
+    '<div class="step-card">' +
+      '<div class="person-header">' +
+        '<div class="person-av staff">🎤</div>' +
+        '<div class="person-info"><div class="person-name">Your Turn</div><div class="person-role staff">Your Response · Turn ' + turnNum + ' of 3</div></div>' +
+        '<div class="step-badge">Record Now</div>' +
+      '</div>' +
+      '<div class="card-divider"></div>' +
+      '<div class="coaching-bullets" style="margin:20px 28px;">' +
+        '<div class="coaching-bullets-label">✦ Mia\'s key points — keep these visible while you record</div>' +
+        '<ul>' + bulletsHTML + '</ul>' +
+      '</div>' +
+      '<div class="card-divider"></div>' +
+      '<div class="recorder-section" style="padding-top:20px;">' +
+        '<div class="recorder-header"><div class="recorder-header-icon">🎥</div><div class="recorder-header-text">Record your Turn ' + turnNum + ' response</div></div>' +
+        '' +
+        (isSubmitted ? '<div class="submitted-banner"><div class="check">✓</div><p>Turn ' + turnNum + ' submitted.<span>Your manager will review this response alongside Priya\'s objection and Mia\'s coaching.</span></p></div>' : '') +
+        recorderHTML + submitFormHTML +
+      '</div>' +
+    '</div>' + nextStepHTML;
+}
+
+// ══ RECORDING ══
+function startRecording(key) {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { alert('Camera not available. Use the Upload button.'); return; }
+  navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function(s) {
+    stream = s;
+    document.getElementById('idleState-' + key).style.display = 'none';
+    document.getElementById('cameraPreview-' + key).style.display = 'block';
+    document.getElementById('liveFeed-' + key).srcObject = stream;
+    recordedChunks = [];
+    var mime = getSupportedMime();
+    mediaRecorder = new MediaRecorder(stream, { mimeType: mime });
+    mediaRecorder.ondataavailable = function(e) { if (e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = function() { processRecording(key); };
+    mediaRecorder.start();
+    document.getElementById('startBtn-' + key).style.display = 'none';
+    document.getElementById('stopBtn-' + key).style.display = 'inline-flex';
+    document.getElementById('recLabel-' + key).innerHTML = '<span style="color:var(--magenta)">● RECORDING</span>';
+    timerSeconds = 0;
+    timerInterval = setInterval(function() {
+      timerSeconds++;
+      var m = Math.floor(timerSeconds / 60), sec = timerSeconds % 60;
+      var el = document.getElementById('timer-' + key);
+      if (el) { el.textContent = m + ':' + String(sec).padStart(2,'0'); el.className = 'timer recording-timer'; }
+    }, 1000);
+  }).catch(function() { alert('Camera access required. Please allow permissions or use the Upload button.'); });
+}
+
+function stopRecording(key) {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  if (stream) { stream.getTracks().forEach(function(t) { t.stop(); }); stream = null; }
+  clearInterval(timerInterval);
+}
+
+function processRecording(key) {
+  var blob = new Blob(recordedChunks, { type: getSupportedMime() });
+  state.recordings[key] = blob;
+  state.recordingURLs[key] = URL.createObjectURL(blob);
+  var turnNum = key === 'turn1' ? 1 : key === 'turn2' ? 2 : 3;
+  var taskDesc = turnNum === 1 ? 'Ask the clarifying question — find out what\'s really behind the stall.' :
+                 turnNum === 2 ? 'Validate the exhaustion, deliver the energy flip, highlight 24/7 access.' :
+                 'Stay calm, reconnect to her goals, close with Focus or Flourish.';
+  renderRecordStep(turnNum, key, taskDesc);
+}
+
+function getSupportedMime() {
+  var types = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm','video/mp4'];
+  for (var i = 0; i < types.length; i++) { if (MediaRecorder.isTypeSupported(types[i])) return types[i]; }
+  return 'video/webm';
+}
+
+function retakeVideo(key) {
+  if (state.recordingURLs[key]) URL.revokeObjectURL(state.recordingURLs[key]);
+  state.recordings[key] = null; state.recordingURLs[key] = null;
+  var turnNum = key === 'turn1' ? 1 : key === 'turn2' ? 2 : 3;
+  var taskDesc = turnNum === 1 ? 'Ask the clarifying question — find out what\'s really behind the stall.' :
+                 turnNum === 2 ? 'Validate the exhaustion, deliver the energy flip, highlight 24/7 access.' :
+                 'Stay calm, reconnect to her goals, close with Focus or Flourish.';
+  renderRecordStep(turnNum, key, taskDesc);
+}
+
+function handleUpload(event, key) {
+  var file = event.target.files[0];
+  if (!file || !file.type.startsWith('video/')) { alert('Please select a video file.'); return; }
+  if (file.size > 500 * 1024 * 1024) { alert('File too large. Please use a video under 500MB.'); return; }
+  state.recordings[key] = file;
+  state.recordingURLs[key] = URL.createObjectURL(file);
+  var turnNum = key === 'turn1' ? 1 : key === 'turn2' ? 2 : 3;
+  var taskDesc = '';
+  renderRecordStep(turnNum, key, taskDesc);
+}
+
+function showSubmitForm(key, turnNum) {
+  var form = document.getElementById('submitForm-' + key);
+  if (form) { form.style.display = 'block'; form.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+}
+
+// ══ SUBMIT ══
+function submitTurn(key, turnNum) {
+  var btn = document.getElementById('submitBtn-' + key);
+  if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
+  downloadVideo(key, turnNum);
+  sendNotification(key, turnNum);
+  state.submitted[key] = true;
+  lsSave();
+  showToast('✓ Turn ' + turnNum + ' submitted — video saved to Downloads');
+  setTimeout(function() {
+    renderRecordStep(turnNum, key, '');
+    if (state.submitted.turn1 && state.submitted.turn2 && state.submitted.turn3) {
+      lsClear();
+      setTimeout(showCompletion, 2000);
+    }
+  }, 800);
+}
+
+function downloadVideo(key, turnNum) {
+  var blob = state.recordings[key];
+  if (!blob) return;
+  var ext = (blob.type && blob.type.includes('mp4')) ? 'mp4' : 'webm';
+  var fileName = 'NoTime_Turn' + turnNum + '_' + state.name.replace(/\s+/g,'_') + '_' + new Date().toISOString().slice(0,10) + '.' + ext;
+  try {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href = url; a.download = fileName;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 5000);
+  } catch(e) { console.error('Download failed:', e); }
+}
+
+function sendNotification(key, turnNum) {
+  var params = new URLSearchParams();
+  params.append('staffName', state.name);
+  params.append('staffClub', state.club);
+  params.append('staffRole', state.role || '');
+  params.append('stageNum', String(turnNum));
+  params.append('stageName', 'Turn ' + turnNum + ' — No Time Objection');
+  params.append('objection', 'No Time / No Energy');
+  params.append('assessment', 'No Time Video Coaching Session');
+  params.append('submittedAt', new Date().toLocaleString('en-AU'));
+  params.append('driveFolder', DRIVE_UPLOAD_FOLDER_URL);
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
+  }).catch(function(err) { console.error('Notification error:', err); });
+}
+
+function showToast(msg) {
+  var toast = document.getElementById('saveToast');
+  if (!toast) return;
+  toast.textContent = msg; toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 4000);
+}
+
+function showCompletion() {
+  document.getElementById('completeName').textContent = state.name.split(' ')[0];
+  document.getElementById('completeClub').textContent = state.club;
+  document.getElementById('completeDate').textContent = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+  showScreen('screen-complete');
+}
+
+function resetAll() {
+  lsClear();
+  Object.keys(state.recordingURLs).forEach(function(k) { if (state.recordingURLs[k]) URL.revokeObjectURL(state.recordingURLs[k]); });
+  state.recordings = { turn1: null, turn2: null, turn3: null };
+  state.recordingURLs = { turn1: null, turn2: null, turn3: null };
+  state.submitted = { turn1: false, turn2: false, turn3: false };
+  state.currentStep = 0;
+  showScreen('screen-session');
+  goToStep(0);
+}
+
+</script>
+</body>
+</html>
