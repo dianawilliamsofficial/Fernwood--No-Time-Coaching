@@ -386,41 +386,41 @@ const DRIVE_UPLOAD_FOLDER_URL = 'Club Drive folder — provided by manager';
 
 // ══ VIMEO VIDEO IDs ══
 const VIDEOS = {
-  priya1:  'ydwgaK0ck1o',
-  mia1:    'rS2SbLSW4EI',
-  priya2:  'MP-bEV5N7f0',
-  mia2:    'vqDXgYC-7S4',
-  priya3:  'AtYEykfiOOw',
-  mia3:    'Zj8Q11Eb3Jc'
+  priya1:  '4f214779eb07455ab77ac641a7aed064',
+  mia1:    '1050b7eaa84141d1a0ea70669956d4cd',
+  priya2:  '71ecdeb764674cf0890162f8466f0722',
+  mia2:    'c74435a6b8c8432ea00a1520da26f318',
+  priya3:  '618e2cb4758743b7a59952a935ef7d5b',
+  mia3:    '4d2738f021334d318a277a76388e4fc9'
 };
 
-// ══ COACHING BULLET POINTS ══
+// ══ COACHING BULLET POINTS — Updated to Amanda Bracks PSA Framework ══
 const COACHING = {
   turn1: {
-    title: 'How to respond to "I need to think about it"',
+    title: 'Problem → Solution → Ask: "I Need to Think About It"',
     bullets: [
-      'Acknowledge warmly — never push back immediately. "Absolutely, that\'s completely understandable."',
-      'Ask the clarifying question and then STOP TALKING: "What is it specifically you\'d like to think about?"',
-      'Wait for her answer — the silence is powerful. She will fill it with the real objection.',
-      'Whatever she says — validate it before moving forward. "Thank you for telling me that."'
+      'PROBLEM: Never let someone leave with this response — it is a statement, not an objection. Ask: "Is it the memberships or the facilities that\'s concerning you?"',
+      'If memberships: "Is it the onboarding fee or the fortnightly debit that is the issue?" Then address the value directly.',
+      'If facilities: "What were you looking for that we don\'t have?" Then explain how a club service solves their specific goal.',
+      'ASK: "Which is the best option for you — the Platinum or the Reformer Pilates membership?"'
     ]
   },
   turn2: {
-    title: 'How to handle the "No Time / No Energy" objection',
+    title: 'Problem → Solution → Ask: "No Time / No Energy"',
     bullets: [
-      'Validate the exhaustion first — it\'s real. "I hear you and I believe you. That kind of tiredness is real."',
-      'Deliver the energy flip: "Exercise doesn\'t take energy — it creates it. Members who come in exhausted leave with more energy every time."',
-      'Use 24/7 access as the practical solution: "You\'re not locked into a class time — 5:30am, 8:30pm, Saturday morning — whenever suits your life."',
-      'Ask her to identify one time slot: "What time of day would realistically work for you? Let\'s build around that."'
+      'PROBLEM: Refer back to the Getting to Know You form — her goals and the days she said she wanted to train.',
+      'SOLUTION: "I know it can feel like you don\'t have enough time — but that\'s usually a sign it\'s exactly the right time to start. We can get you started with FIIT30 — 30 minutes, instructor-led, fits easily into a busy schedule."',
+      'Remind her: 24/7 access means her own time and pace. Once or twice a week is never a waste of money. Exercise gives energy — it doesn\'t take it away.',
+      'ASK: "Which membership suits you best — the Platinum or the Reformer Pilates? Let\'s get you started today."'
     ]
   },
   turn3: {
-    title: 'How to close when she says her schedule is completely full',
+    title: 'Problem → Solution → Ask: Closing the No Time Objection',
     bullets: [
-      'Point out she made time today: "You made time to come here. That tells me that when it matters enough, there is time."',
-      'Make it feel small: "I\'m not asking you to overhaul your life — just identify one slot. Even twice a week for 30 minutes changes everything."',
-      'Reference her goal and deadline: "You said you want to [goal]. How much longer can that wait for a less busy time? Because that time never comes."',
-      'Close with the two-option question: "Which membership suits you best — the Focus or the Flourish? Let\'s get you started today."'
+      'Normalise: "Many people felt the same way starting out. Once they tried a few classes they naturally fell into a routine — and started making time because of how good it made them feel."',
+      'Make it small: "Only 30 minutes, one to two times a week will have such a positive impact on your mind, body and energy."',
+      'Reference her goals: "You said you want to [goals]. Let\'s start with one or two workouts a week plus Pulse at home. You\'ll be feeling stronger and more energetic in just a few weeks."',
+      'ASK: "Which membership suits you best — the Platinum or the Reformer Pilates? Let\'s get you started today."'
     ]
   }
 };
@@ -517,9 +517,9 @@ function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎬</div><div class="video-label-text">' + title + '</div></div>' +
-        '<div style="position:relative;width:100%;max-width:400px;margin:0 auto;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
-        '<div style="padding-bottom:177.78%;position:relative;">' +
-          '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/' + videoId + '?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
+        '<div style="position:relative;width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
+        '<div style="padding-bottom:56.25%;position:relative;">' +
+          '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" src="https://app.heygen.com/embeds/' + videoId + '" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>' +
         '</div>' +
       '</div>' +
       '</div>' +
@@ -546,9 +546,9 @@ function renderMiaStep(turnNum, videoId, coaching, turnKey) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎓</div><div class="video-label-text">Mia coaches your Turn ' + turnNum + ' response</div></div>' +
-        '<div style="position:relative;width:100%;max-width:400px;margin:0 auto;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
-        '<div style="padding-bottom:177.78%;position:relative;">' +
-          '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" src="https://www.youtube.com/embed/' + videoId + '?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
+        '<div style="position:relative;width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
+        '<div style="padding-bottom:56.25%;position:relative;">' +
+          '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" src="https://app.heygen.com/embeds/' + videoId + '" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>' +
         '</div>' +
       '</div>' +
       '</div>' +
