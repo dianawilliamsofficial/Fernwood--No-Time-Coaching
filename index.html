@@ -183,6 +183,15 @@ body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(
 .save-toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--charcoal-dark); color: white; padding: 12px 22px; border-radius: 30px; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; z-index: 9999; box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: transform 0.4s cubic-bezier(.4,0,.2,1), opacity 0.4s; opacity: 0; pointer-events: none; white-space: nowrap; }
 .save-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
+
+/* VIDEO MODAL */
+.video-modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; }
+.video-modal-overlay.active { display:flex; }
+.video-modal-inner { width:90%; max-width:800px; position:relative; }
+.video-modal-close { position:absolute; top:-44px; right:0; background:none; border:none; color:white; font-size:32px; cursor:pointer; line-height:1; }
+.video-modal-frame { position:relative; padding-bottom:56.25%; border-radius:14px; overflow:hidden; background:#000; }
+.video-modal-frame iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
 html.is-mobile .desktop-recorder { display: none !important; }
 html.is-mobile .mobile-upload-section { display: block !important; }
 .mobile-upload-section { display: none; }
@@ -204,6 +213,17 @@ html.is-mobile .mobile-upload-section { display: block !important; }
     document.documentElement.classList.add('is-mobile');
   }
 })();
+function openVideoModal(videoId) {
+  document.getElementById('modalIframe').src = 'https://app.heygen.com/embeds/' + videoId;
+  document.getElementById('videoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoModal() {
+  document.getElementById('modalIframe').src = '';
+  document.getElementById('videoModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
 </script>
 </head>
 <body>
@@ -374,6 +394,16 @@ html.is-mobile .mobile-upload-section { display: block !important; }
     </div>
   </div>
 
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="videoModal">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+      <div class="video-modal-frame">
+        <iframe id="modalIframe" src="" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="save-toast" id="saveToast"></div>
@@ -517,21 +547,45 @@ function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎬</div><div class="video-label-text">' + title + '</div></div>' +
-        '<div style="position:relative;width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
-        '<div style="padding-bottom:56.25%;position:relative;">' +
-          '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" src="https://app.heygen.com/embeds/' + videoId + '" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>' +
+        '<div style="background:var(--charcoal-dark);border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
+          '<div style="font-size:48px;margin-bottom:16px;">🎬</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;color:white;margin-bottom:8px;">Watch Priya</div>' +
+          '<div style="font-size:13.5px;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.6;">Watch Priya\'s response, then come back here to read Mia\'s coaching notes and record your response.</div>' +
+          '<a href="https://app.heygen.com/embeds/' + videoId + '" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:var(--magenta);color:white;font-family:\'DM Sans\',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;box-shadow:0 4px 16px rgba(200,0,125,0.4);">' +
+            '<div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid white;"></div>' +
+            'Watch Priya\'s Video' +
+          '</a>' +
+          '<div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);">Opens in a new tab · Come back here when finished</div>' +
         '</div>' +
-      '</div>' +
+        '<div style="display:none">' +
+          '<div>' +
+            '<iframe id="priya-iframe-' + turnNum + '" style="display:none;" src="" frameborder="0"></iframe>' +
+            '<div id="priya-overlay-' + turnNum + '" onclick="var f=document.getElementById(\'priya-iframe-' + turnNum + '\');f.src=f.src+\'?autoplay=1\';document.getElementById(\'priya-overlay-' + turnNum + '\').style.display=\'none\'" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.4);z-index:10;border-radius:16px;">' +
+              '<div style="text-align:center;">' +
+                '<div style="width:80px;height:80px;background:var(--magenta);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(200,0,125,0.5);margin:0 auto 12px;">' +
+                  '<div style="width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:30px solid white;margin-left:6px;"></div>' +
+                '</div>' +
+                '<div style="color:white;font-size:14px;font-weight:600;font-family:\'DM Sans\',sans-serif;">Click to watch</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
       '</div>' +
       '<div class="context-box">' +
         '<div class="context-box-label">What\'s happening here</div>' +
         '<p>' + desc + '</p>' +
       '</div>' +
-      '<div style="padding:16px 28px 8px;text-align:center;">' +
-        '<p style="font-size:13px;color:var(--light);margin-bottom:12px;">↓ When you have finished watching, click below to continue</p>' +
-      '</div>' +
-      '<div class="continue-btn-row">' +
-        '<button class="btn btn-dark" onclick="goToStep(' + state.currentStep + ' + 1)">I\'ve Watched — Continue to Mia\'s Coaching →</button>' +
+      '<div style="padding:20px 28px 8px;">' +
+        '<div style="background:var(--charcoal-dark);border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">' +
+          '<div style="display:flex;align-items:center;gap:12px;">' +
+            '<div style="font-size:24px;">✅</div>' +
+            '<div>' +
+              '<div style="font-size:14px;font-weight:700;color:white;margin-bottom:3px;">Finished watching Priya?</div>' +
+              '<div style="font-size:12.5px;color:rgba(255,255,255,0.6);">Click the button to hear Mia\'s coaching on how to respond.</div>' +
+            '</div>' +
+          '</div>' +
+          '<button class="btn btn-primary continue-pulse" onclick="goToStep(' + state.currentStep + ' + 1)" style="font-size:15px;padding:14px 28px;">Watch Mia\'s Coaching →</button>' +
+        '</div>' +
       '</div>' +
     '</div>';
 }
@@ -549,21 +603,45 @@ function renderMiaStep(turnNum, videoId, coaching, turnKey) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎓</div><div class="video-label-text">Mia coaches your Turn ' + turnNum + ' response</div></div>' +
-        '<div style="position:relative;width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
-        '<div style="padding-bottom:56.25%;position:relative;">' +
-          '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" src="https://app.heygen.com/embeds/' + videoId + '" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>' +
+        '<div style="background:var(--charcoal-dark);border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
+          '<div style="font-size:48px;margin-bottom:16px;">🎓</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;color:white;margin-bottom:8px;">Watch Mia\'s Coaching</div>' +
+          '<div style="font-size:13.5px;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.6;">Watch Mia coach you on how to respond, then come back here to read the key points and record your response.</div>' +
+          '<a href="https://app.heygen.com/embeds/' + videoId + '" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:white;font-family:\'DM Sans\',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;box-shadow:0 4px 16px rgba(201,168,76,0.4);">' +
+            '<div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid white;"></div>' +
+            'Watch Mia\'s Coaching' +
+          '</a>' +
+          '<div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);">Opens in a new tab · Come back here when finished</div>' +
         '</div>' +
-      '</div>' +
+        '<div style="display:none">' +
+          '<div>' +
+            '<iframe id="mia-iframe-' + turnNum + '" style="display:none;" src="" frameborder="0"></iframe>' +
+            '<div id="mia-overlay-' + turnNum + '" onclick="var f=document.getElementById(\'mia-iframe-' + turnNum + '\');f.src=f.src+\'?autoplay=1\';document.getElementById(\'mia-overlay-' + turnNum + '\').style.display=\'none\'" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.4);z-index:10;border-radius:16px;">' +
+              '<div style="text-align:center;">' +
+                '<div style="width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(201,168,76,0.5);margin:0 auto 12px;">' +
+                  '<div style="width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:30px solid white;margin-left:6px;"></div>' +
+                '</div>' +
+                '<div style="color:white;font-size:14px;font-weight:600;font-family:\'DM Sans\',sans-serif;">Click to watch</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
       '</div>' +
       '<div class="coaching-bullets">' +
         '<div class="coaching-bullets-label">✦ Key coaching points — keep these visible while you record</div>' +
         '<ul>' + bulletsHTML + '</ul>' +
       '</div>' +
-      '<div style="padding:16px 28px 8px;text-align:center;">' +
-        '<p style="font-size:13px;color:var(--light);margin-bottom:12px;">↓ When you have finished watching, click below to record your response</p>' +
-      '</div>' +
-      '<div class="continue-btn-row">' +
-        '<button class="btn btn-green" onclick="goToStep(' + state.currentStep + ' + 1)">I\'ve Watched — Record My Response →</button>' +
+      '<div style="padding:20px 28px 8px;">' +
+        '<div style="background:#1B5E20;border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">' +
+          '<div style="display:flex;align-items:center;gap:12px;">' +
+            '<div style="font-size:24px;">🎤</div>' +
+            '<div>' +
+              '<div style="font-size:14px;font-weight:700;color:white;margin-bottom:3px;">Ready to record your response?</div>' +
+              '<div style="font-size:12.5px;color:rgba(255,255,255,0.7);">Use Mia\'s key points above as your guide while recording.</div>' +
+            '</div>' +
+          '</div>' +
+          '<button class="btn btn-green continue-pulse" onclick="goToStep(' + state.currentStep + ' + 1)" style="font-size:15px;padding:14px 28px;background:#2E7D32;">Record My Response →</button>' +
+        '</div>' +
       '</div>' +
     '</div>';
 }
@@ -785,6 +863,17 @@ function resetAll() {
   state.currentStep = 0;
   showScreen('screen-session');
   goToStep(0);
+}
+
+function openVideoModal(videoId) {
+  document.getElementById('modalIframe').src = 'https://app.heygen.com/embeds/' + videoId;
+  document.getElementById('videoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoModal() {
+  document.getElementById('modalIframe').src = '';
+  document.getElementById('videoModal').classList.remove('active');
+  document.body.style.overflow = '';
 }
 
 </script>
