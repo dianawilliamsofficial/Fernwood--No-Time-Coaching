@@ -386,7 +386,7 @@ const DRIVE_UPLOAD_FOLDER_URL = 'Club Drive folder — provided by manager';
 
 // ══ VIMEO VIDEO IDs ══
 const VIDEOS = {
-  priya1:  '4f214779eb07455ab77ac641a7aed064',
+  priya1:  'bca61f24e361417eb7e59a53262737d5',
   mia1:    '1050b7eaa84141d1a0ea70669956d4cd',
   priya2:  '71ecdeb764674cf0890162f8466f0722',
   mia2:    'c74435a6b8c8432ea00a1520da26f318',
@@ -527,8 +527,11 @@ function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
         '<div class="context-box-label">What\'s happening here</div>' +
         '<p>' + desc + '</p>' +
       '</div>' +
+      '<div style="padding:16px 28px 8px;text-align:center;">' +
+        '<p style="font-size:13px;color:var(--light);margin-bottom:12px;">↓ When you have finished watching, click below to continue</p>' +
+      '</div>' +
       '<div class="continue-btn-row">' +
-        '<button class="btn btn-dark" onclick="goToStep(' + state.currentStep + ' + 1)">Watch Mia\'s Coaching →</button>' +
+        '<button class="btn btn-dark" onclick="goToStep(' + state.currentStep + ' + 1)">I\'ve Watched — Continue to Mia\'s Coaching →</button>' +
       '</div>' +
     '</div>';
 }
@@ -556,8 +559,11 @@ function renderMiaStep(turnNum, videoId, coaching, turnKey) {
         '<div class="coaching-bullets-label">✦ Key coaching points — keep these visible while you record</div>' +
         '<ul>' + bulletsHTML + '</ul>' +
       '</div>' +
+      '<div style="padding:16px 28px 8px;text-align:center;">' +
+        '<p style="font-size:13px;color:var(--light);margin-bottom:12px;">↓ When you have finished watching, click below to record your response</p>' +
+      '</div>' +
       '<div class="continue-btn-row">' +
-        '<button class="btn btn-green" onclick="goToStep(' + state.currentStep + ' + 1)">I\'m Ready — Record My Response →</button>' +
+        '<button class="btn btn-green" onclick="goToStep(' + state.currentStep + ' + 1)">I\'ve Watched — Record My Response →</button>' +
       '</div>' +
     '</div>';
 }
