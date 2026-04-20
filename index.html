@@ -261,9 +261,9 @@ function closeVideoModal() {
           <div style="font-size:48px;margin-bottom:12px;">🎓</div>
           <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:6px;">Mia's Introduction</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;">Watch before you begin</div>
-          <a style="display:block;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
             <iframe src="https://drive.google.com/file/d/1Ka7rY_gIBKXapAY3pBaw0AxUlraeIODZ/preview" width="100%" height="280" allow="autoplay" style="border:none;display:block;border-radius:12px;"></iframe>
-          </div
+          </div>
         </div>
         <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:20px;"></div>
         <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;margin-bottom:4px;">Welcome to the No Time Coaching Session</h2>
@@ -573,17 +573,7 @@ function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎬</div><div class="video-label-text">' + title + '</div></div>' +
-        getDriveEmbed(turnNum, 'priya') + '' +
-            '<div id="priya-overlay-' + turnNum + '" onclick="var f=document.getElementById(\'priya-iframe-' + turnNum + '\');f.src=f.src+\'?autoplay=1\';document.getElementById(\'priya-overlay-' + turnNum + '\').style.display=\'none\'" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.4);z-index:10;border-radius:16px;">' +
-              '<div style="text-align:center;">' +
-                '<div style="width:80px;height:80px;background:var(--magenta);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(200,0,125,0.5);margin:0 auto 12px;">' +
-                  '<div style="width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:30px solid white;margin-left:6px;"></div>' +
-                '</div>' +
-                '<div style="color:white;font-size:14px;font-weight:600;font-family:\'DM Sans\',sans-serif;">Click to watch</div>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
+        getDriveEmbed(turnNum, 'priya') +
       '</div>' +
       '<div class="context-box">' +
         '<div class="context-box-label">What\'s happening here</div>' +
@@ -617,17 +607,7 @@ function renderMiaStep(turnNum, videoId, coaching, turnKey) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎓</div><div class="video-label-text">Mia coaches your Turn ' + turnNum + ' response</div></div>' +
-        getDriveEmbed(turnNum, 'mia') + '' +
-            '<div id="mia-overlay-' + turnNum + '" onclick="var f=document.getElementById(\'mia-iframe-' + turnNum + '\');f.src=f.src+\'?autoplay=1\';document.getElementById(\'mia-overlay-' + turnNum + '\').style.display=\'none\'" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.4);z-index:10;border-radius:16px;">' +
-              '<div style="text-align:center;">' +
-                '<div style="width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(201,168,76,0.5);margin:0 auto 12px;">' +
-                  '<div style="width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:30px solid white;margin-left:6px;"></div>' +
-                '</div>' +
-                '<div style="color:white;font-size:14px;font-weight:600;font-family:\'DM Sans\',sans-serif;">Click to watch</div>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
+        getDriveEmbed(turnNum, 'mia') +
       '</div>' +
       '<div class="coaching-bullets">' +
         '<div class="coaching-bullets-label">✦ Key coaching points — keep these visible while you record</div>' +
