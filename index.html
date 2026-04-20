@@ -378,7 +378,9 @@ function closeVideoModal() {
   <!-- SCREEN 3: COMPLETION -->
   <div class="screen" id="screen-complete">
     <div class="completion-card">
-      <div class="completion-icon">🏆</div>
+      <div style="margin-bottom:24px;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+        <iframe src="https://drive.google.com/file/d/1l2L0hyAAP9kJoiRgnydcSsiC99wu81DX/preview" width="100%" height="360" allow="autoplay" style="border:none;display:block;"></iframe>
+      </div>
       <div class="completion-congrats">Session Complete</div>
       <h2>Objection <em style="color:var(--purple);font-style:italic;">Handled</em></h2>
       <p>Outstanding work, <span id="completeName"></span>. You've completed all three turns of the No Time coaching session with Priya and Mia. Your manager will review your submissions and be in touch with feedback.</p>
@@ -545,6 +547,20 @@ function goToStep(step) {
 }
 
 // ══ PRIYA STEP ══
+function getDriveEmbed(turnNum, type) {
+  var driveIds = {
+    priya1: '1CSGLgVXj1eoTFlQqGgvbfp9uSAuZXgTn',
+    priya2: '1EI0tr73mqHJ_gf4Iqswbu7UrUqP5f-aW',
+    priya3: '1xx1t3Rv7CywZru4-ynTOZhIDbmza7W8F',
+    mia1:   '1JV9IVFHT401We0nvPLwbNIASl51dcMj8',
+    mia2:   '1MRU8LpJIMt0ABqXHyRJFHM8EhDHPWsGb',
+    mia3:   '1XiYoo7BGbuI65uf2rSUGnxKTKgLSs8aI',
+  };
+  var key = type + turnNum;
+  var id = driveIds[key] || '';
+  return '<iframe src="https://drive.google.com/file/d/' + id + '/preview" width="100%" height="360" allow="autoplay" style="border:none;display:block;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.25);"></iframe>';
+}
+
 function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
   var isSubmittedTurn = (turnNum === 1 && state.submitted.turn1) || (turnNum === 2 && state.submitted.turn2) || (turnNum === 3 && state.submitted.turn3);
   document.getElementById('stepContainer').innerHTML =
@@ -557,19 +573,7 @@ function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎬</div><div class="video-label-text">' + title + '</div></div>' +
-        '<div style="background:var(--charcoal-dark);border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
-          '<div style="font-size:48px;margin-bottom:16px;">🎬</div>' +
-          '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;color:white;margin-bottom:8px;">Watch Priya</div>' +
-          '<div style="font-size:13.5px;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.6;">Watch Priya\'s response, then come back here to read Mia\'s coaching notes and record your response.</div>' +
-          '<a href="https://app.heygen.com/embeds/' + videoId + '" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:var(--magenta);color:white;font-family:\'DM Sans\',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;box-shadow:0 4px 16px rgba(200,0,125,0.4);">' +
-            '<div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid white;"></div>' +
-            'Watch Priya\'s Video' +
-          '</a>' +
-          '<div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);">Opens in a new tab · Come back here when finished</div>' +
-        '</div>' +
-        '<div style="display:none">' +
-          '<div>' +
-            '<iframe id="priya-iframe-' + turnNum + '" style="display:none;" src="" frameborder="0"></iframe>' +
+        getDriveEmbed(turnNum, 'priya') + '' +
             '<div id="priya-overlay-' + turnNum + '" onclick="var f=document.getElementById(\'priya-iframe-' + turnNum + '\');f.src=f.src+\'?autoplay=1\';document.getElementById(\'priya-overlay-' + turnNum + '\').style.display=\'none\'" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.4);z-index:10;border-radius:16px;">' +
               '<div style="text-align:center;">' +
                 '<div style="width:80px;height:80px;background:var(--magenta);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(200,0,125,0.5);margin:0 auto 12px;">' +
@@ -613,19 +617,7 @@ function renderMiaStep(turnNum, videoId, coaching, turnKey) {
       '<div class="card-divider"></div>' +
       '<div class="video-section">' +
         '<div class="video-label-row"><div class="video-label-icon">🎓</div><div class="video-label-text">Mia coaches your Turn ' + turnNum + ' response</div></div>' +
-        '<div style="background:var(--charcoal-dark);border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3);">' +
-          '<div style="font-size:48px;margin-bottom:16px;">🎓</div>' +
-          '<div style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;color:white;margin-bottom:8px;">Watch Mia\'s Coaching</div>' +
-          '<div style="font-size:13.5px;color:rgba(255,255,255,0.6);margin-bottom:24px;line-height:1.6;">Watch Mia coach you on how to respond, then come back here to read the key points and record your response.</div>' +
-          '<a href="https://app.heygen.com/embeds/' + videoId + '" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:white;font-family:\'DM Sans\',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;box-shadow:0 4px 16px rgba(201,168,76,0.4);">' +
-            '<div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid white;"></div>' +
-            'Watch Mia\'s Coaching' +
-          '</a>' +
-          '<div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);">Opens in a new tab · Come back here when finished</div>' +
-        '</div>' +
-        '<div style="display:none">' +
-          '<div>' +
-            '<iframe id="mia-iframe-' + turnNum + '" style="display:none;" src="" frameborder="0"></iframe>' +
+        getDriveEmbed(turnNum, 'mia') + '' +
             '<div id="mia-overlay-' + turnNum + '" onclick="var f=document.getElementById(\'mia-iframe-' + turnNum + '\');f.src=f.src+\'?autoplay=1\';document.getElementById(\'mia-overlay-' + turnNum + '\').style.display=\'none\'" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.4);z-index:10;border-radius:16px;">' +
               '<div style="text-align:center;">' +
                 '<div style="width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(201,168,76,0.5);margin:0 auto 12px;">' +
