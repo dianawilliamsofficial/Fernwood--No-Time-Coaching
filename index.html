@@ -226,7 +226,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
 <div id="passwordScreen">
   <div class="pw-card">
     <div class="pw-logo">F</div>
-    <h2>Sales Coaching Platform</h2>
+    <h2>Getting Started Coaching Platform</h2>
     <p>This platform is for Fernwood Fitness staff only. Enter your access code to continue.</p>
     <input type="password" id="pwInput" placeholder="Enter access code" onkeydown="if(event.key==='Enter')checkPassword()" />
     <div class="pw-error" id="pwError">Incorrect access code. Please try again.</div>
@@ -242,7 +242,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
       <div class="logo-mark">F</div>
       <div>
         <div class="logo-text">Fernwood Fitness</div>
-        <div class="logo-sub">Sales Coaching Platform</div>
+        <div class="logo-sub">Getting Started Coaching Platform</div>
       </div>
     </div>
     <div class="header-badge">Objection Coaching · "No Time"</div>
@@ -254,7 +254,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
     <div class="hero-eyebrow">🎬 Live Video Coaching</div>
     <h1>"I Don't Have<br><em>the Time"</em></h1>
     <div class="hero-rule"></div>
-    <p class="hero-desc">Watch Priya raise the objection. Hear Mia's coaching. Then record your own response. Three real moments — five minutes — one complete sales conversation.</p>
+    <p class="hero-desc">Watch Priya raise the objection. Hear Mia's coaching. Then record your own response. Three real moments — five minutes — one complete getting started conversation.</p>
   </div>
 </div>
 
@@ -270,7 +270,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
           <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:6px;">Mia's Introduction</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;">Watch before you begin</div>
           <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-            <iframe src="https://drive.google.com/file/d/1Ka7rY_gIBKXapAY3pBaw0AxUlraeIODZ/preview" width="100%" height="280" allow="autoplay" style="border:none;display:block;border-radius:12px;"></iframe>
+            <iframe src="https://drive.google.com/file/d/1TvJg7ffCsq1u6G_GIkZ2xHSuekkx1Kpo/preview" width="100%" height="280" allow="autoplay" style="border:none;display:block;border-radius:12px;"></iframe>
           </div>
         </div>
         <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:20px;"></div>
@@ -387,7 +387,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
   <div class="screen" id="screen-complete">
     <div class="completion-card">
       <div style="margin-bottom:24px;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-        <iframe src="https://drive.google.com/file/d/1l2L0hyAAP9kJoiRgnydcSsiC99wu81DX/preview" width="100%" height="360" allow="autoplay" style="border:none;display:block;"></iframe>
+        <iframe src="https://drive.google.com/file/d/1JbVoIkWMBT-BUGXpMVRoXqvgXVpHJGRm/preview" width="100%" height="360" allow="autoplay" style="border:none;display:block;"></iframe>
       </div>
       <div class="completion-congrats">Session Complete</div>
       <h2>Objection <em style="color:var(--purple);font-style:italic;">Handled</em></h2>
@@ -440,6 +440,7 @@ const COACHING = {
   turn1: {
     title: 'Problem → Solution → Ask: "I Need to Think About It"',
     bullets: [
+      'Remember — we are not here to sell gym memberships. We are here to help her change her life. Every conversation is about her goals, her health and her future — not a transaction.',
       'PROBLEM: Never let someone leave with this response — it is a statement, not an objection. Ask: "Is it the memberships or the facilities that\'s concerning you?"',
       'If memberships: "Is it the onboarding fee or the fortnightly debit that is the issue?" Then address the value directly.',
       'If facilities: "What were you looking for that we don\'t have?" Then explain how a club service solves their specific goal.',
@@ -548,12 +549,12 @@ function goToStep(step) {
 // ══ PRIYA STEP ══
 function getDriveEmbed(turnNum, type) {
   var driveIds = {
-    priya1: '1CSGLgVXj1eoTFlQqGgvbfp9uSAuZXgTn',
-    priya2: '1EI0tr73mqHJ_gf4Iqswbu7UrUqP5f-aW',
-    priya3: '1xx1t3Rv7CywZru4-ynTOZhIDbmza7W8F',
-    mia1:   '1JV9IVFHT401We0nvPLwbNIASl51dcMj8',
-    mia2:   '1MRU8LpJIMt0ABqXHyRJFHM8EhDHPWsGb',
-    mia3:   '1XiYoo7BGbuI65uf2rSUGnxKTKgLSs8aI',
+    priya1: '13ueRIqpt2qw-QfQm4HorkhW2AsjsHnz1',
+    priya2: '1vE-IWGpZgEq4D1-hKq3iT5Zv1hgoj350',
+    priya3: '1KoBYZyIX-5BKnlpFHqNdbSm-TxusJhta',
+    mia1:   '16mv6ztD9_WBS3REe-3Sq6e8Y7CF_4OP7',
+    mia2:   '1p6YBDqNzHTRpOh1MfU9HOzeN6lfzG97s',
+    mia3:   '10B5_tN7u7FbtHdjI7kJHtrfzEGA0imGS',
   };
   var key = type + turnNum;
   var id = driveIds[key] || '';
