@@ -211,6 +211,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
   .completion-meta { grid-template-columns: 1fr 1fr; }
 }
 </style>
+<script src="https://fast.wistia.com/player.js" async></script>
 <script>
 (function() {
   var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -270,7 +271,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
           <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:6px;">Mia's Introduction</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;">Watch before you begin</div>
           <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-            <div style="max-width:360px;margin:0 auto;"><div style="position:relative;width:100%;padding-bottom:177.78%;border-radius:12px;overflow:hidden;background:#000;"><iframe src="https://drive.google.com/file/d/1TvJg7ffCsq1u6G_GIkZ2xHSuekkx1Kpo/preview" width="100%" height="100%" allow="autoplay" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe><div style="position:absolute;top:0;right:0;width:60px;height:60px;z-index:10;cursor:default;"></div></div></div>
+            <div style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"><script src="https://fast.wistia.com/embed/INTRO_ID.js" async type="module"></script><wistia-player media-id="INTRO_ID" aspect="0.5625" style="display:block;width:100%;"></wistia-player></div>
           </div>
         </div>
         <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:20px;"></div>
@@ -387,7 +388,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
   <div class="screen" id="screen-complete">
     <div class="completion-card">
       <div style="margin-bottom:24px;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-        <div style="max-width:360px;margin:0 auto;"><div style="position:relative;width:100%;padding-bottom:177.78%;border-radius:14px;overflow:hidden;background:#000;"><iframe src="https://drive.google.com/file/d/1JbVoIkWMBT-BUGXpMVRoXqvgXVpHJGRm/preview" width="100%" height="100%" allow="autoplay" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe><div style="position:absolute;top:0;right:0;width:60px;height:60px;z-index:10;cursor:default;"></div></div></div>
+        <div style="max-width:360px;margin:0 auto;border-radius:14px;overflow:hidden;"><script src="https://fast.wistia.com/embed/OUTRO_ID.js" async type="module"></script><wistia-player media-id="OUTRO_ID" aspect="0.5625" style="display:block;width:100%;"></wistia-player></div>
       </div>
       <div class="completion-congrats">Session Complete</div>
       <h2>Objection <em style="color:var(--purple);font-style:italic;">Handled</em></h2>
@@ -548,21 +549,21 @@ function goToStep(step) {
 
 // ══ PRIYA STEP ══
 function getDriveEmbed(turnNum, type) {
-  var driveIds = {
-    priya1: '13ueRIqpt2qw-QfQm4HorkhW2AsjsHnz1',
-    priya2: '1vE-IWGpZgEq4D1-hKq3iT5Zv1hgoj350',
-    priya3: '1KoBYZyIX-5BKnlpFHqNdbSm-TxusJhta',
-    mia1:   '16mv6ztD9_WBS3REe-3Sq6e8Y7CF_4OP7',
-    mia2:   '1p6YBDqNzHTRpOh1MfU9HOzeN6lfzG97s',
-    mia3:   '10B5_tN7u7FbtHdjI7kJHtrfzEGA0imGS',
+  // Wistia Video IDs — replace placeholders once uploaded to Wistia
+  var wistiaIds = {
+    priya1: 'PRIYA1_ID',
+    priya2: 'PRIYA2_ID',
+    priya3: 'PRIYA3_ID',
+    mia1:   '58mu9vjrkq',
+    mia2:   'MIA2_ID',
+    mia3:   'MIA3_ID',
   };
   var key = type + turnNum;
-  var id = driveIds[key] || '';
-  return '<div style="max-width:360px;margin:0 auto;">' +
-    '<div style="position:relative;width:100%;padding-bottom:177.78%;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);background:#000;">' +
-    '<iframe src="https://drive.google.com/file/d/' + id + '/preview" width="100%" height="100%" allow="autoplay" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>' +
-    '<div style="position:absolute;top:0;right:0;width:60px;height:60px;z-index:10;cursor:default;"></div>' +
-    '</div></div>';
+  var id = wistiaIds[key] || '';
+  return '<div style="max-width:360px;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);">' +
+    '<script src="https://fast.wistia.com/embed/' + id + '.js" async type="module"><\/script>' +
+    '<wistia-player media-id="' + id + '" aspect="0.5625" style="display:block;width:100%;"></wistia-player>' +
+    '</div>';
 }
 
 function renderPriyaStep(turnNum, videoId, videoKey, title, desc) {
