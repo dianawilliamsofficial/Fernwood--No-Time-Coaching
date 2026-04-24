@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -271,7 +272,7 @@ html.is-mobile .mobile-upload-section { display: block !important; }
           <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:6px;">Mia's Introduction</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;">Watch before you begin</div>
           <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-            <div style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"><script src="https://fast.wistia.com/embed/9c3yfou95y.js" async type="module"></script><wistia-player media-id="9c3yfou95y" aspect="0.5625" style="display:block;width:100%;"></wistia-player></div>
+            <div style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"><script src="https://fast.wistia.com/embed/l3vn1krdn9.js" async type="module"></script><wistia-player media-id="l3vn1krdn9" aspect="0.5625" style="display:block;width:100%;"></wistia-player></div>
           </div>
         </div>
         <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:20px;"></div>
@@ -399,9 +400,9 @@ html.is-mobile .mobile-upload-section { display: block !important; }
         <div class="meta-box"><div class="meta-label">Date</div><div class="meta-val" id="completeDate" style="font-size:13px;padding-top:3px;">—</div></div>
       </div>
       <div style="background:var(--purple);border-radius:16px;padding:24px 28px;text-align:left;margin-bottom:24px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:8px;">⚠️ Upload your videos</div>
-        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:white;margin-bottom:10px;">Your 3 response videos are in your Downloads folder</div>
-        <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.8;">Upload them to your club's shared Drive folder so your manager can review all three turns alongside Priya's objections and Mia's coaching.</div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:8px;">✓ Submission complete</div>
+        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:white;margin-bottom:10px;">All 3 response videos uploaded successfully</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.8;">Your videos are now with your manager for review alongside Priya's objections and Mia's coaching. No further action needed.</div>
       </div>
       <div class="what-next">
         <h4>What happens next</h4>
@@ -671,14 +672,14 @@ function renderRecordStep(turnNum, turnKey, taskDesc) {
 
   var submitFormHTML = !isSubmitted ? '<div class="submit-form" id="submitForm-' + turnKey + '">' +
     '<h4>Ready to submit Turn ' + turnNum + '?</h4>' +
-    '<p>Your video will be saved to your Downloads folder and your manager will be notified.</p>' +
+    '<p>Your video will be uploaded automatically and your manager will be notified.</p>' +
     '<div class="btn-row-right"><button class="btn btn-ghost" onclick="document.getElementById(\'submitForm-' + turnKey + '\').style.display=\'none\'">Cancel</button><button class="btn btn-magenta" id="submitBtn-' + turnKey + '" onclick="submitTurn(\'' + turnKey + '\',' + turnNum + ')">Submit Turn ' + turnNum + ' →</button></div>' +
   '</div>' : '';
 
   var nextStepHTML = isSubmitted && turnNum < 3 ?
     '<div style="padding:0 28px 28px;display:flex;justify-content:flex-end;"><button class="btn btn-dark" onclick="goToStep(' + (state.currentStep + 1) + ')">Continue to Turn ' + (turnNum + 1) + ' →</button></div>' :
     isSubmitted && turnNum === 3 ?
-    '<div style="background:var(--charcoal-dark);border-radius:16px;padding:28px 32px;text-align:center;margin:0 28px 28px;"><div style="font-size:40px;margin-bottom:12px;">🏆</div><div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:white;margin-bottom:10px;">All Three Turns Complete!</div><button class="btn btn-magenta" onclick="showCompletion()" style="font-size:15px;padding:14px 32px;">View Your Summary →</button></div>' : '';
+    '<div style="background:var(--charcoal-dark);border-radius:16px;padding:28px 32px;text-align:center;margin:0 28px 28px;"><div style="font-size:40px;margin-bottom:12px;">🏆</div><div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:white;margin-bottom:10px;">All Three Turns Complete!</div><div style="font-size:13.5px;color:rgba(255,255,255,0.7);">Taking you to your session summary...</div></div>' : '';
 
   document.getElementById('stepContainer').innerHTML =
     '<div class="step-card">' +
