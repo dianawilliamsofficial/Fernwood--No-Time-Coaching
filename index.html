@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,6 +149,12 @@ body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(
 .recorded-video { width: 100%; display: block; border-radius: 12px; max-height: 320px; object-fit: cover; }
 .video-chip { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.65); color: white; font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
 
+/* HOROWITZ QUOTE BOX */
+.horowitz-quote { background: linear-gradient(135deg, #FCE8F5 0%, #F8DCEC 100%); border: 1.5px solid var(--magenta); border-radius: 12px; padding: 16px 20px; margin: 0 auto 16px; max-width: 460px; }
+.horowitz-quote .quote-text { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: var(--charcoal-dark); line-height: 1.5; margin-bottom: 6px; }
+.horowitz-quote .quote-attr { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--magenta); font-weight: 700; margin-bottom: 8px; }
+.horowitz-quote .quote-cta { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--magenta); }
+
 /* BUTTONS */
 .btn { padding: 13px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 8px; }
 .btn-magenta { background: var(--magenta); color: white; }
@@ -272,12 +277,12 @@ html.is-mobile .mobile-upload-section { display: block !important; }
           <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:6px;">Mia's Introduction</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;">Watch before you begin</div>
           <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-            <div style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"><script src="https://fast.wistia.com/embed/l3vn1krdn9.js" async type="module"></script><wistia-player media-id="l3vn1krdn9" aspect="0.5625" style="display:block;width:100%;"></wistia-player></div>
+            <div style="max-width:360px;margin:0 auto;border-radius:12px;overflow:hidden;"><script src="https://fast.wistia.com/embed/9c3yfou95y.js" async type="module"></script><wistia-player media-id="9c3yfou95y" aspect="0.5625" style="display:block;width:100%;"></wistia-player></div>
           </div>
         </div>
         <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:20px;"></div>
         <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;margin-bottom:4px;">Welcome to the No Time Coaching Session</h2>
-        <p style="color:rgba(255,255,255,0.6);font-size:13.5px;">A 5-minute guided role play with real video coaching from Mia.</p>
+        <p style="color:rgba(255,255,255,0.6);font-size:13.5px;">A 5-minute guided role play with real video coaching from Mia. Practice as many times as you like — only submit when you feel good about it.</p>
       </div>
       <div class="reg-card-body">
 
@@ -393,20 +398,20 @@ html.is-mobile .mobile-upload-section { display: block !important; }
       </div>
       <div class="completion-congrats">Session Complete</div>
       <h2>Objection <em style="color:var(--purple);font-style:italic;">Handled</em></h2>
-      <p>Outstanding work, <span id="completeName"></span>. You've completed all three turns of the No Time coaching session with Priya and Mia. Your manager will review your submissions and be in touch with feedback.</p>
+      <p>Outstanding work, <span id="completeName"></span>. You've completed all three turns of the No Time coaching session. You practiced, you recorded when you felt ready, and you got it done. Your manager will be in touch with feedback.</p>
       <div class="completion-meta">
         <div class="meta-box"><div class="meta-label">Turns</div><div class="meta-val">3 / 3</div></div>
         <div class="meta-box"><div class="meta-label">Club</div><div class="meta-val" id="completeClub" style="font-size:13px;padding-top:3px;">—</div></div>
         <div class="meta-box"><div class="meta-label">Date</div><div class="meta-val" id="completeDate" style="font-size:13px;padding-top:3px;">—</div></div>
       </div>
       <div style="background:var(--purple);border-radius:16px;padding:24px 28px;text-align:left;margin-bottom:24px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:8px;">✓ Submission complete</div>
-        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:white;margin-bottom:10px;">All 3 response videos uploaded successfully</div>
-        <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.8;">Your videos are now with your manager for review alongside Priya's objections and Mia's coaching. No further action needed.</div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:8px;">⚠️ Upload your videos</div>
+        <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:white;margin-bottom:10px;">Your 3 response videos are in your Downloads folder</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.8;">Upload them to your club's shared Drive folder so your manager can review all three turns alongside Priya's objections and Mia's coaching.</div>
       </div>
       <div class="what-next">
         <h4>What happens next</h4>
-        <div class="next-item">Your manager will review your three responses against Mia's coaching notes and give you targeted feedback on your clarifying question, your energy flip, and your close.</div>
+        <div class="next-item">Your manager will review the take you submitted against Mia's coaching notes and give you targeted feedback. Remember — they only see what you chose to submit.</div>
         <div class="next-item">More objection coaching sessions are coming — each one follows the same format with Priya and Mia.</div>
         <div class="next-item">The more times you run this session, the more natural the conversation will feel in a real tour.</div>
       </div>
@@ -646,7 +651,7 @@ function renderRecordStep(turnNum, turnKey, taskDesc) {
   if (isSubmitted) {
     recorderHTML = '<div class="recorder-box has-video">' +
       (tdURL ? '<div class="video-container"><video class="recorded-video" src="' + tdURL + '" controls></video><div class="video-chip">Turn ' + turnNum + ' — Submitted ✓</div></div>' : '') +
-      '<p style="color:#2E7D32;font-weight:600;font-size:14px;margin-top:8px;">✓ Submitted — your manager will review this response.</p>' +
+      '<p style="color:#2E7D32;font-weight:600;font-size:14px;margin-top:8px;">✓ Submitted — great work! Your manager will be in touch with feedback.</p>' +
     '</div>';
   } else if (td) {
     recorderHTML = '<div class="recorder-box has-video">' +
@@ -663,7 +668,22 @@ function renderRecordStep(turnNum, turnKey, taskDesc) {
       '</div>' +
       '<div class="desktop-recorder"><div class="recorder-box" id="recBox-' + turnKey + '">' +
       '<div id="cameraPreview-' + turnKey + '" style="display:none;"><div class="video-container"><video id="liveFeed-' + turnKey + '" autoplay muted playsinline style="max-height:260px;"></video><div class="video-chip" id="recLabel-' + turnKey + '">Camera Ready</div></div><div class="timer" id="timer-' + turnKey + '">0:00</div></div>' +
-      '<div id="idleState-' + turnKey + '"><div class="rec-icon">🎥</div><div class="rec-title">Record Your Response</div><div class="rec-desc">' + taskDesc + '</div></div>' +
+      '<div id="idleState-' + turnKey + '">' +
+        '<div class="rec-icon">🎥</div>' +
+        '<div style="background:var(--magenta);border-radius:10px;padding:8px 18px;display:inline-block;margin-bottom:14px;">' +
+        '<p style="font-size:13px;font-weight:800;color:white;letter-spacing:1.5px;text-transform:uppercase;">This Is Not A Test</p>' +
+        '</div>' +
+        '<div class="horowitz-quote">' +
+        '<p class="quote-text">"The difference between ordinary and extraordinary is practice."</p>' +
+        '<p class="quote-attr">— Vladimir Horowitz</p>' +
+        '<p class="quote-cta">Now it\'s your turn.</p>' +
+        '</div>' +
+        '<div class="rec-title">Record Your Response</div>' +
+        '<div class="rec-desc">' + taskDesc + '</div>' +
+        '<div style="background:var(--purple-pale);border-radius:10px;padding:12px 16px;margin-bottom:18px;border-left:3px solid var(--purple);">' +
+        '<p style="font-size:13px;color:var(--charcoal-dark);line-height:1.6;">Practice as many times as you like — nobody sees anything until you hit submit. Only send it when you feel good about it.</p>' +
+        '</div>' +
+        '</div>' +
       '<div class="btn-row"><button class="btn btn-green" id="startBtn-' + turnKey + '" onclick="startRecording(\'' + turnKey + '\')">● Start Recording</button><button id="stopBtn-' + turnKey + '" onclick="stopRecording(\'' + turnKey + '\')" style="display:none;background:var(--magenta);color:white;" class="btn">■ Stop & Review</button></div>' +
       '<div style="height:1px;background:var(--border);margin:18px 0;"></div>' +
       '<div style="text-align:center;"><p style="color:var(--mid);font-size:13px;margin-bottom:10px;">Or upload a pre-recorded video</p><label class="btn btn-ghost" style="cursor:pointer;">📁 Upload<input type="file" accept="video/*" onchange="handleUpload(event,\'' + turnKey + '\')" style="display:none;"></label></div>' +
@@ -672,14 +692,14 @@ function renderRecordStep(turnNum, turnKey, taskDesc) {
 
   var submitFormHTML = !isSubmitted ? '<div class="submit-form" id="submitForm-' + turnKey + '">' +
     '<h4>Ready to submit Turn ' + turnNum + '?</h4>' +
-    '<p>Your video will be uploaded automatically and your manager will be notified.</p>' +
+    '<p>Happy with this take? Submit and your video goes straight to your manager. Want another go? Cancel and record again — practice as many times as you like. Nobody sees anything until you submit.</p>' +
     '<div class="btn-row-right"><button class="btn btn-ghost" onclick="document.getElementById(\'submitForm-' + turnKey + '\').style.display=\'none\'">Cancel</button><button class="btn btn-magenta" id="submitBtn-' + turnKey + '" onclick="submitTurn(\'' + turnKey + '\',' + turnNum + ')">Submit Turn ' + turnNum + ' →</button></div>' +
   '</div>' : '';
 
   var nextStepHTML = isSubmitted && turnNum < 3 ?
     '<div style="padding:0 28px 28px;display:flex;justify-content:flex-end;"><button class="btn btn-dark" onclick="goToStep(' + (state.currentStep + 1) + ')">Continue to Turn ' + (turnNum + 1) + ' →</button></div>' :
     isSubmitted && turnNum === 3 ?
-    '<div style="background:var(--charcoal-dark);border-radius:16px;padding:28px 32px;text-align:center;margin:0 28px 28px;"><div style="font-size:40px;margin-bottom:12px;">🏆</div><div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:white;margin-bottom:10px;">All Three Turns Complete!</div><div style="font-size:13.5px;color:rgba(255,255,255,0.7);">Taking you to your session summary...</div></div>' : '';
+    '<div style="background:var(--charcoal-dark);border-radius:16px;padding:28px 32px;text-align:center;margin:0 28px 28px;"><div style="font-size:40px;margin-bottom:12px;">🏆</div><div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:white;margin-bottom:10px;">All Three Turns Complete!</div><button class="btn btn-magenta" onclick="showCompletion()" style="font-size:15px;padding:14px 32px;">View Your Summary →</button></div>' : '';
 
   document.getElementById('stepContainer').innerHTML =
     '<div class="step-card">' +
@@ -697,7 +717,7 @@ function renderRecordStep(turnNum, turnKey, taskDesc) {
       '<div class="recorder-section" style="padding-top:20px;">' +
         '<div class="recorder-header"><div class="recorder-header-icon">🎥</div><div class="recorder-header-text">Record your Turn ' + turnNum + ' response</div></div>' +
         '' +
-        (isSubmitted ? '<div class="submitted-banner"><div class="check">✓</div><p>Turn ' + turnNum + ' submitted.<span>Your manager will review this response alongside Priya\'s objection and Mia\'s coaching.</span></p></div>' : '') +
+        (isSubmitted ? '<div class="submitted-banner"><div class="check">✓</div><p>Turn ' + turnNum + ' submitted — great work!<span>Your manager will review the take you chose to submit alongside Priya\'s objection and Mia\'s coaching notes.</span></p></div>' : '') +
         recorderHTML + submitFormHTML +
       '</div>' +
     '</div>' + nextStepHTML;
